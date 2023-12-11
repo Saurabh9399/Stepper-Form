@@ -8,9 +8,9 @@ import YearAndMonthToggleComponent from "../YearAndMonthToggleComponent";
 const SelectYourPlan = ({ onNext, onBack }) => {
   const [isMonthly, setIsMonthly] = React.useState(true);
   const PlansArray = [
-    { title: "Arcade", price: "9", icon: arcadeIcon },
-    { title: "Advanced", price: "12", icon: advancedIcon },
-    { title: "Pro", price: "15", icon: proIcon },
+    { title: "Arcade", priceForMonth: "9", icon: arcadeIcon,priceForYear:"90" },
+    { title: "Advanced", priceForMonth: "12", icon: advancedIcon,priceForYear:"120" },
+    { title: "Pro", priceForMonth: "15", icon: proIcon,priceForYear:"150" },
   ];
   return (
     <div className="w-2/3 h-full mx-auto pt-[10%] flex flex-col justify-start items-start">
@@ -23,8 +23,10 @@ const SelectYourPlan = ({ onNext, onBack }) => {
           <SelectYourPlanCard
             title={item.title}
             icon={item.icon}
-            price={item.price}
+            price={isMonthly ? item.priceForMonth : item.priceForYear}
             key={item.title}
+            duration={isMonthly? "mo" : "yr"}
+            isMonthly={isMonthly}
           />
         ))}
       </div>
