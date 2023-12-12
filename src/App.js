@@ -4,6 +4,7 @@ import StepperSidebar from "./components/StepperSIdebar";
 import SelectYourPlan from "./components/SelectYourPlan";
 import PickAddOns from "./components/PickAddOns";
 import FinishingUp from "./components/FinishingUp";
+import ThankYou from "./components/ThankYouComponent";
 
 function App() {
   const projectRoutes = createBrowserRouter([
@@ -43,6 +44,15 @@ function App() {
         </>
       ),
     },
+    {
+      path: "/thankyou",
+      element: (
+        <>
+          <StepperSidebar />
+          <ThankYou />
+        </>
+      ),
+    }
   ]);
 
   return (

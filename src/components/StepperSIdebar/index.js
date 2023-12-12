@@ -27,9 +27,9 @@ const StepperSidebar = () => {
       />
       <div className="absolute h-1/2 top-0 left-0 right-0 flex flex-col justify-between items-start text-white p-6">
         {numSteps.map((i, index) => (
-          <Link to={"/"+i.route} >
+          <Link to={"/"+i.route}key={index + 1} >
             <StepsCardComponent
-              key={index + 1}
+              
               step={i.step}
               stepTitle={i.stepTitle}
               style={`mt-4`} // Adjust the spacing as needed

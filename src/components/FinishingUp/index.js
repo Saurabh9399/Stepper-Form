@@ -1,5 +1,6 @@
 import React from "react";
 import FinishingUpCard from "../FinishingUpCard";
+import { Link } from "react-router-dom";
 
 const FinishingUp = ({ onNext, onBack }) => {
   return (
@@ -24,12 +25,16 @@ const FinishingUp = ({ onNext, onBack }) => {
 
       <div className="flex justify-around mt-[10%] w-[88%]">
         <div className="text-gray-400 font-bold px-6 py-3 rounded">
+        <Link to={"/pickaddons"}>
           <button type="button" onClick={onBack}>
             Go Back
           </button>
+          </Link>
         </div>
         <div className="bg-blue-700 font-bold text-white rounded px-6 py-3">
+        <Link to={"/thankyou"}>
           <button type="submit">Confirm</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import arcadeIcon from "../../assets/images/icon-arcade.svg";
 import advancedIcon from "../../assets/images/icon-advanced.svg";
 import proIcon from "../../assets/images/icon-pro.svg";
 import YearAndMonthToggleComponent from "../YearAndMonthToggleComponent";
+import { Link } from "react-router-dom";
 
 const SelectYourPlan = ({ onNext, onBack }) => {
   const [isMonthly, setIsMonthly] = React.useState(true);
@@ -35,13 +36,17 @@ const SelectYourPlan = ({ onNext, onBack }) => {
       </div>
 
       <div className="flex justify-around mt-[10%] w-[88%]">
-        <div className="bg-gray-700 text-white px-6 py-3 rounded">
-          <button type="button" onClick={onBack}>
-            Go Back
-          </button>
-        </div>
+      <div className="text-gray-400 font-bold px-6 py-3 rounded">
+      <Link to={"/"}>
+      <button type="button" onClick={onBack}>
+        Go Back
+      </button>
+      </Link>
+    </div>
         <div className="bg-gray-700 text-white rounded px-6 py-3">
+        <Link to={"/pickaddons"}>
           <button type="submit">Next Step</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import HorizontalCard from "../HorizontalCard";
+import { Link } from "react-router-dom";
 
 const PickAddOns = ({ onNext, onBack }) => {
   const horrCarArray = [
@@ -39,13 +40,17 @@ const PickAddOns = ({ onNext, onBack }) => {
       </div>
 
       <div className="flex justify-around mt-[10%] w-[88%]">
-        <div className="bg-gray-700 text-white px-6 py-3 rounded">
-          <button type="button" onClick={onBack}>
-            Go Back
-          </button>
-        </div>
+      <div className="text-gray-400 font-bold px-6 py-3 rounded">
+      <Link to={"/plan"}>
+      <button type="button" onClick={onBack}>
+        Go Back
+      </button>
+      </Link>
+    </div>
         <div className="bg-gray-700 text-white rounded px-6 py-3">
+        <Link to={"/finish"}>
           <button type="submit">Next Step</button>
+          </Link>
         </div>
       </div>
     </div>
