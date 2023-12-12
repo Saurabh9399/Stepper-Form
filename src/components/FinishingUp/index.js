@@ -7,7 +7,7 @@ const FinishingUp = ({ onNext, onBack }) => {
   const finalState = useSelector(store => store.user);
   console.log(finalState);
   return (
-    <div className="w-2/3 h-full mx-auto pt-[10%] flex flex-col justify-start items-start">
+    <div className="w-2/3 h-full mx-auto pt-[5%] flex flex-col justify-start items-start">
       <h1 className="text-4xl font-bold mb-4 ml-[14.5%]">Finishing up</h1>
       <p className="text-gray-600 mb-6 ml-[14.5%]">
         Double-check everything looks OK before confirming.
@@ -31,7 +31,7 @@ const FinishingUp = ({ onNext, onBack }) => {
       </div>
       </div>
 
-      <div className="flex justify-around mt-[10%] w-[88%]">
+      <div className="flex justify-around mt-[6%] w-[88%]">
         <div className="text-gray-400 font-bold px-6 py-3 rounded">
         <Link to={"/pickaddons"}>
           <button type="button" onClick={onBack}>

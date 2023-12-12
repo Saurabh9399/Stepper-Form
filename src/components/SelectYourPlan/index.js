@@ -5,7 +5,7 @@ import advancedIcon from "../../assets/images/icon-advanced.svg";
 import proIcon from "../../assets/images/icon-pro.svg";
 import YearAndMonthToggleComponent from "../YearAndMonthToggleComponent";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectYearlyOrMonthly,
   selectYourPlanAction,
@@ -17,6 +17,7 @@ const SelectYourPlan = ({ onNext, onBack }) => {
   const [validationError, setValidationError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const selectedPlanFromStore = useSelector(store => store.user.plan);
 
   const PlansArray = [
     {
@@ -61,7 +62,7 @@ const SelectYourPlan = ({ onNext, onBack }) => {
   };
 
   return (
-    <div className="w-2/3 h-full mx-auto pt-[10%] flex flex-col justify-start items-start">
+    <div className="w-2/3 h-full mx-auto pt-[5%] flex flex-col justify-start items-start">
       <h1 className="text-4xl font-bold mb-4 ml-[16.5%]">Select your plan</h1>
       <p className="text-gray-600 mb-6 ml-[16.5%]">
         You have the option of monthly or yearly billing.
