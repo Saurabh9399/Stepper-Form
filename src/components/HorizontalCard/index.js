@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const HorizontalCard = ({ title, description, additionalCost }) => {
+const HorizontalCard = ({ title, description, additionalCost, onChange,isMonthly }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -13,7 +13,11 @@ const HorizontalCard = ({ title, description, additionalCost }) => {
       <input
         type="checkbox"
         checked={isChecked}
-        onChange={handleCheckboxChange}
+        onChange={()=>{
+            handleCheckboxChange();
+            onChange()
+        }
+    }
         className="w-6 h-6 mr-4 border border-gray-400 rounded cursor-pointer"
       />
 
@@ -24,7 +28,7 @@ const HorizontalCard = ({ title, description, additionalCost }) => {
       </div>
 
       {/* Additional cost on the right */}
-      <div className="text-blue-500 font-bold">{`+$${additionalCost}/mo`}</div>
+      <div className="text-blue-500 font-bold"> {isMonthly ? `+$${additionalCost}/mo` : `+$${additionalCost}/yr`}</div>
     </div>
   );
 };

@@ -4,9 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name: 'user',
     initialState:{
-        name:"",
-        email:"",
-        phone:"",
+        personalInfo:{
+            name:"",
+            email:"",
+            phone:""
+        },
         plan: {},
         monthly:true,
         addons:{},
@@ -15,17 +17,17 @@ const userSlice = createSlice({
 
     },
     reducers:{
-        addPersonalInfo:()=>{
-
+        addPersonalInfo:(state,action)=>{
+           state.personalInfo = action.payload;
         },
-        selectYourPlanAction:()=>{
-
+        selectYourPlanAction:(state,action)=>{
+            state.plan = action.payload;
         },
-        selectYearlyOrMonthly:()=>{
-
+        selectYearlyOrMonthly:(state,action)=>{
+            state.monthly = action.payload;
         },
-        selectAddOns:()=>{
-
+        selectAddOns:(state,action)=>{
+            state.addons = action.payload;
         },
 
     }

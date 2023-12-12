@@ -1,9 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addPersonalInfo } from "../../redux/userSlice";
 
-const PersonalInfoForm = ({ onNext, onBack }) => {
+const PersonalInfoForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const initialValues = {
     name: "",
     email: "",
@@ -20,13 +24,9 @@ const PersonalInfoForm = ({ onNext, onBack }) => {
     // Formik provides the setSubmitting function, which can be used to prevent
     // the form submission while validation is still being performed.
 
-    if (isValid && dirty) {
-      // Handle form submission logic here
-      console.log(values);
-      // Assuming form submission is successful, proceed to the next step
-      onNext();
-    }
-
+    navigate("/plan")
+    console.log(values);
+    dispatch(addPersonalInfo(values));
     // Set submitting to false to allow the form to be submitted again
     setSubmitting(false);
   };
@@ -82,11 +82,11 @@ const PersonalInfoForm = ({ onNext, onBack }) => {
 
             <div className="flex justify-around mt-[10%] w-[105%]">
               <div className="bg-transparent text-white px-6 py-3 rounded"></div>
-              {dirty && isValid && (
+              {(
                 <div className="bg-gray-700 text-white rounded px-6 py-3">
-                  <Link to={"/plan"}>
+                 
                     <button type="submit">Next Step</button>
-                  </Link>
+                
                 </div>
               )}
             </div>
