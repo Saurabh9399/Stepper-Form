@@ -71,10 +71,8 @@ const PersonalInfoForm = ({ onNext, onBack }) => {
           </div>
 
           <div className="flex justify-around mt-[10%] w-[105%]">
-          <div className="bg-gray-700 text-white px-6 py-3 rounded">
-          <button type="button" onClick={onBack} >
-          Go Back
-          </button>
+          <div className="bg-transparent text-white px-6 py-3 rounded">
+          
           </div>
           <div className="bg-gray-700 text-white rounded px-6 py-3">
             <button type="submit">
