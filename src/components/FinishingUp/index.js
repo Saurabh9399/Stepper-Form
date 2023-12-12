@@ -1,8 +1,11 @@
 import React from "react";
 import FinishingUpCard from "../FinishingUpCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const FinishingUp = ({ onNext, onBack }) => {
+  const finalState = useSelector(store => store.user);
+  console.log(finalState);
   return (
     <div className="w-2/3 h-full mx-auto pt-[10%] flex flex-col justify-start items-start">
       <h1 className="text-4xl font-bold mb-4 ml-[14.5%]">Finishing up</h1>
@@ -11,7 +14,12 @@ const FinishingUp = ({ onNext, onBack }) => {
       </p>
 
       <div className="w-[75%] mx-auto">
-        <FinishingUpCard />
+        <FinishingUpCard
+         isMonthly={finalState?.monthly}
+         planTitle={finalState?.plan?.title}
+         planPrice={finalState?.monthly ? finalState?.plan?.priceForMonth : finalState?.plan?.priceForYear}
+         addOns={finalState?.addons}
+         />
       </div>
 
       <div className="w-[73%] mx-auto">
