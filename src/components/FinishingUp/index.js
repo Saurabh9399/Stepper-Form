@@ -1,11 +1,39 @@
-import React from 'react'
+import React from "react";
+import FinishingUpCard from "../FinishingUpCard";
 
-const FinishingUp = () => {
+const FinishingUp = ({ onNext, onBack }) => {
   return (
-    <div className='w-3/4'>
-      Finishing up
-    </div>
-  )
-}
+    <div className="w-2/3 h-full mx-auto pt-[10%] flex flex-col justify-start items-start">
+      <h1 className="text-4xl font-bold mb-4 ml-[14.5%]">Finishing up</h1>
+      <p className="text-gray-600 mb-6 ml-[14.5%]">
+        Double-check everything looks OK before confirming.
+      </p>
 
-export default FinishingUp
+      <div className="w-[75%] mx-auto">
+        <FinishingUpCard />
+      </div>
+
+      <div className="w-[73%] mx-auto">
+      <div className="flex justify-between items-cente m-4 w-[75%]">
+        <div>
+          <h3 className="text-gray-500 text-lg">Total (per month)</h3>
+        </div>
+        <div className="text-blue-500 font-bold text-xl">+$12/mo</div>
+      </div>
+      </div>
+
+      <div className="flex justify-around mt-[10%] w-[88%]">
+        <div className="text-gray-400 font-bold px-6 py-3 rounded">
+          <button type="button" onClick={onBack}>
+            Go Back
+          </button>
+        </div>
+        <div className="bg-blue-700 font-bold text-white rounded px-6 py-3">
+          <button type="submit">Confirm</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FinishingUp;
