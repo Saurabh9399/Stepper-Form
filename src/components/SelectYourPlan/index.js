@@ -56,6 +56,7 @@ const SelectYourPlan = ({ onNext, onBack }) => {
   };
 
   const handleToggleMonthly = (newIsMonthly) => {
+    console.log(newIsMonthly);
     // Dispatch an action to update isMonthly in the Redux store
     dispatch(selectYearlyOrMonthly(newIsMonthly));
     setIsMonthly(newIsMonthly); // Update the local state

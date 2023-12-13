@@ -3,7 +3,7 @@ import thankYouSvg from "../../assets/images/icon-thank-you.svg"
 
 const ThankYou = () => {
   return (
-    <div className="bg-white p-8 pt-0 rounded-md shadow-md m-4 flex flex-col justify-center items-center w-[85%]">
+    <div className="bg-white p-8 pt-0 rounded-md shadow-md m-4 flex flex-col justify-center items-center w-[75%]">
       {/* SVG Icon in the row above "Thank you!" */}
       <div className="mb-4">
         <img src={thankYouSvg} alt='thankyousvg'/>

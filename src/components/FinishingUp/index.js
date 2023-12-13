@@ -93,7 +93,7 @@ const handleFInalSubmit = () => {
         </div>
         <div className="bg-blue-700 font-bold text-white rounded px-6 py-3">
           
-            <button type="submit" onClick={handleFInalSubmit}>Confirm</button>
+            <button type="submit" onClick={handleFInalSubmit} disabled={!totalAmount}>Confirm</button>
          
         </div>
       </div>
