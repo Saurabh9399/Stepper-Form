@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addPersonalInfo } from "../../redux/userSlice";
 
@@ -10,9 +10,9 @@ const PersonalInfoForm = () => {
   const dispatch = useDispatch();
   const personalInfo = useSelector(store => store.user.personalInfo);
   const initialValues = {
-    name: "",
-    email: "",
-    phone: "",
+    name: personalInfo.name || "",
+    email: personalInfo.email || "",
+    phone: personalInfo.phone || "",
   };
 
   const validationSchema = Yup.object({
@@ -49,7 +49,7 @@ const PersonalInfoForm = () => {
                 name="name"
                 className="mt-1 p-3 border rounded w-full focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="e.g. Stephen King"
-                value={personalInfo.name}
+                // value={personalInfo.name}
               />
               <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
             </div>
@@ -64,7 +64,7 @@ const PersonalInfoForm = () => {
                 name="email"
                 className="mt-1 p-3 border rounded w-full focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="e.g. stephenking@gmail.com"
-                value={personalInfo.email}
+                // value={personalInfo.email}
               />
               <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
             </div>
@@ -79,12 +79,12 @@ const PersonalInfoForm = () => {
                 name="phone"
                 className="mt-1 p-3 border rounded w-full focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="e.g. +1 234 567 890"
-                value={personalInfo.phone}
+                // value={personalInfo.phone}
               />
               <ErrorMessage name="phone" component="div" className="text-red-500 text-sm mt-1" />
             </div>
 
-            <div className="flex justify-around mt-[10%] w-[105%]">
+            <div className="flex justify-around mt-[6%] w-[105%]">
               <div className="bg-transparent text-white px-6 py-3 rounded"></div>
               {(
                 <div className="bg-gray-700 text-white rounded px-6 py-3">

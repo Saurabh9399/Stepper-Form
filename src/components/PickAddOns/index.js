@@ -1,46 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import HorizontalCard from "../HorizontalCard";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAddOns } from "../../redux/userSlice";
+import { updateHorrCardArray } from "../../redux/userSlice";
 
 const PickAddOns = ({ onNext, onBack }) => {
-  const [selectedAddons, setSelectedAddons] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isMonthly = useSelector((store) => store.user.monthly);
+ const horrCardArray = useSelector((store) => store.user.horrCardArray);
 
-  const horrCarArray = [
-    {
-      title: "Online Service",
-      additionalCostForM: 1,
-      additionalCostForY:10,
-      description: "Access to multiple games",
-    },
-    {
-      title: "Large Storage",
-      additionalCostForM: 2,
-      additionalCostForY:20,
-      description: "Extra 1 TB of cloud save",
-    },
-    {
-      title: "Customizable Profile",
-      additionalCostForM: 2,
-      additionalCostForY:20,
-      description: "Custom theme on your profile",
-    },
-  ];
+ const handleCheckboxChange = (item, checked) => {
 
-  const handleCheckboxChange = (addon) => {
-    if (selectedAddons.includes(addon)) {
-      setSelectedAddons((prevSelected) => prevSelected.filter((item) => item !== addon));
-    } else {
-      setSelectedAddons((prevSelected) => [...prevSelected, addon]);
-    }
-  };
+  // Update the checked property in horrCardArray
+  const updatedArray = horrCardArray.map((arrayItem) =>
+    arrayItem.title === item.title
+      ? { ...arrayItem, checked: checked }
+      : arrayItem
+  );
+
+  // Update the Redux store with the modified array
+  dispatch(updateHorrCardArray(updatedArray));
+
+  console.log("Updated Array", updatedArray);
+};
+
+
 
   const handleAddOnsClick = () => {
-    dispatch(selectAddOns(selectedAddons))
     navigate("/finish")
   }
 
@@ -52,15 +39,15 @@ const PickAddOns = ({ onNext, onBack }) => {
       </p>
 
       <div className="w-[75%] mx-auto flex flex-col items-start">
-        {horrCarArray.map((item) => (
+        {horrCardArray.map((item) => (
           <HorizontalCard
             title={item.title}
             additionalCost={isMonthly?item.additionalCostForM:item.additionalCostForY}
             description={item.description}
             key={item.title}
-            onChange={() => handleCheckboxChange(item)}
-            isChecked={selectedAddons.includes(item)}
-            isMonthly={isMonthly}
+            onChangeHandler={(checked)=>handleCheckboxChange(item,!checked)}
+            checkboxCheck={item.checked}
+            isMonthly={isMonthly} 
           />
         ))}{" "}
       </div>
@@ -75,7 +62,7 @@ const PickAddOns = ({ onNext, onBack }) => {
         </div>
         <div className="bg-gray-700 text-white rounded px-6 py-3">
          
-            <button type="submit" disabled={selectedAddons.length === 0} onClick={handleAddOnsClick}>
+            <button type="submit" onClick={handleAddOnsClick}>
               Next Step
             </button>
         </div>

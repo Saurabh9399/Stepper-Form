@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const HorizontalCard = ({ title, description, additionalCost, onChange,isMonthly }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const HorizontalCard = ({ title, description, additionalCost, onChangeHandler,isMonthly,checkboxCheck }) => {
+  const [isChecked, setIsChecked] = useState(checkboxCheck);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -15,7 +15,7 @@ const HorizontalCard = ({ title, description, additionalCost, onChange,isMonthly
         checked={isChecked}
         onChange={()=>{
             handleCheckboxChange();
-            onChange()
+            onChangeHandler(isChecked)
         }
     }
         className="w-6 h-6 mr-4 border border-gray-400 rounded cursor-pointer"

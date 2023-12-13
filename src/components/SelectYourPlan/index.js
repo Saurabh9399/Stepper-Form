@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SelectYourPlanCard from "../SelectYourPlanCard";
 import arcadeIcon from "../../assets/images/icon-arcade.svg";
 import advancedIcon from "../../assets/images/icon-advanced.svg";
@@ -12,12 +12,20 @@ import {
 } from "../../redux/userSlice";
 
 const SelectYourPlan = ({ onNext, onBack }) => {
-  const [isMonthly, setIsMonthly] = useState(true);
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const selectedPlanFromStore = useSelector(store => store.user.plan);
+  const isMonthlyFromStore = useSelector(store => store.user.monthly);
+
+  const [isMonthly, setIsMonthly] = useState();
+  const [selectedPlan, setSelectedPlan] = useState();
   const [validationError, setValidationError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const selectedPlanFromStore = useSelector(store => store.user.plan);
+
+  useEffect(() => {
+    // Update the selected plan and billing frequency when the component mounts
+    setSelectedPlan(selectedPlanFromStore);
+    setIsMonthly(isMonthlyFromStore);
+  }, [selectedPlanFromStore, isMonthlyFromStore]);
 
   const PlansArray = [
     {
@@ -47,20 +55,23 @@ const SelectYourPlan = ({ onNext, onBack }) => {
     });
   };
 
+  const handleToggleMonthly = (newIsMonthly) => {
+    // Dispatch an action to update isMonthly in the Redux store
+    dispatch(selectYearlyOrMonthly(newIsMonthly));
+    setIsMonthly(newIsMonthly); // Update the local state
+  };
+
   const handleSubmitClick = () => {
     console.log(selectedPlan);
-
     if (!selectedPlan) {
       setValidationError("Please select a plan!");
       return;
     }
-
-    navigate("/pickaddons")
-
+  
     dispatch(selectYourPlanAction(selectedPlan));
-    dispatch(selectYearlyOrMonthly(isMonthly));
+    navigate("/pickaddons");
   };
-
+  
   return (
     <div className="w-2/3 h-full mx-auto pt-[5%] flex flex-col justify-start items-start">
       <h1 className="text-4xl font-bold mb-4 ml-[16.5%]">Select your plan</h1>
@@ -82,8 +93,8 @@ const SelectYourPlan = ({ onNext, onBack }) => {
         ))}
       </div>
       <div className="w-[88%] mt-[3%]">
-        <YearAndMonthToggleComponent
-          setIsMonthly={setIsMonthly}
+        <YearAndMonthToggleComponent   
+          setIsMonthly={handleToggleMonthly}
           isMonthly={isMonthly}
         />
       </div>
@@ -103,7 +114,7 @@ const SelectYourPlan = ({ onNext, onBack }) => {
           </Link>
         </div>
         <div className="bg-gray-700 text-white rounded px-6 py-3">
-          <button type="submit" onClick={handleSubmitClick}>
+          <button type="submit" onClick={handleSubmitClick} disabled={!selectedPlan}>
             Next Step
           </button>
         </div>
